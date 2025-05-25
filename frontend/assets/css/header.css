@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+.header .container {
+    display: flex;
+    align-items: center;
+
+    padding: 1rem 0;
+    gap: 2rem;
+}
+
+.header__logo {
+    width: 5rem;
+}
+.header__logo path {
+    fill: red;
+}
+.header__title {
+    font-size: 1.8rem;
+}
+
+@media (max-width: 576px) {
+    .header .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}

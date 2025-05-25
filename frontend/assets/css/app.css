@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@import url("./header.css");
+@import url("./main.css");
+
+* {
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    --cards-bg: #fff;
+    --page-bg: #f8f9fa;
+
+    --text-color: #000000;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.05);
+
+    background-color: var(--page-bg);
+}
+
+._outline_shadow {
+    border: none;
+    /* Убираем рамку карточки */
+    box-shadow: 0 0.25rem 0.5rem ;
+    /* Добавляем небольшую тень */
+    border-radius: 0.5rem;
+}
+
+/* .container {
+    width: min(calc(100% - 2rem), 1024px);
+} */
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 500;
+    color: var(--text-color);
+}

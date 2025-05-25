@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>2Nets | Честный киловатт</title>
+</head>
+
+<body>
+
+    <div class="app">
+        <header class="header">
+            <div class="container">
+
+                <svg class="header__logo" viewBox="0 0 411 291" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M288.376 1H310.537V137H288.376V90.9543L243.161 35.9714V137H221V1H243.161L288.376 55.9829V1ZM362.21 24.5086V55.4H398.847V78.7143H362.21V113.686H411V137H339.156V1H411V24.5086H362.21Z"
+                        fill="white" />
+                    <path
+                        d="M302.798 154V177.703H273.393V290H250.583V177.703H221V154H302.798ZM327.668 154H410V196.743H386.833V177.703H350.478V197.131L408.574 234.046V266.297V290H327.668V247.257H350.478V266.297H385.585V246.869L327.668 209.954V154Z"
+                        fill="white" />
+                    <path
+                        d="M87.7297 47.6532C64.8792 47.6532 49.3735 63.1589 49.3735 84.3773C49.3735 106.004 64.4711 121.101 87.7297 121.101C110.988 121.101 125.27 106.004 125.27 84.3773C125.27 63.1589 110.988 47.6532 87.7297 47.6532ZM87.7297 0.728027C138.327 0.728027 175.051 37.4521 175.051 84.3773C175.051 114.573 160.362 139.463 136.287 153.745L73.8562 241.067H176.276V290.44H8.977V246.371L68.9596 164.762C28.5632 157.417 0 125.182 0 84.3773C0 37.4521 37.5402 0.728027 87.7297 0.728027Z"
+                        fill="white" />
+                </svg>
+
+                <h1 class="header__title">
+                    Честный Киловатт
+                </h1>
+
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="row main_content">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="nav_bar">
+                            <div class="nav_bar__btn" data-tab="1">
+                                Загрузить датасет
+                            </div>
+                            <div class="nav_bar__btn" data-tab="2">
+                                Рекомендации
+                            </div>
+                            <div class="nav_bar__btn" data-tab="3">
+                                Сохраненные
+                            </div>
+                            <div class="nav_bar__btn" data-tab="4">
+                                Карта
+                            </div>
+                            <div class="nav_bar__btn" data-tab="5">
+                                Жалобы
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="tab" data-tab="1">
+                            <h1 class="tab__title">
+                                Загрузите JSON-файл
+                            </h1>
+                            <label class="json_droparea">
+                                <svg width="26" height="30" viewBox="0 0 26 30" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_228_103)">
+                                        <path
+                                            d="M14.3116 0.550949C13.5862 -0.181473 12.408 -0.181473 11.6826 0.550949L4.25402 8.05095C3.52857 8.78337 3.52857 9.97282 4.25402 10.7052C4.97946 11.4377 6.15759 11.4377 6.88304 10.7052L11.1429 6.40446V18.7502C11.1429 19.7873 11.9728 20.6252 13 20.6252C14.0272 20.6252 14.8571 19.7873 14.8571 18.7502V6.40446L19.117 10.7052C19.8424 11.4377 21.0205 11.4377 21.746 10.7052C22.4714 9.97282 22.4714 8.78337 21.746 8.05095L14.3174 0.550949H14.3116ZM3.71429 20.6252C3.71429 19.5881 2.88437 18.7502 1.85714 18.7502C0.829911 18.7502 0 19.5881 0 20.6252V24.3752C0 27.4806 2.49554 30.0002 5.57143 30.0002H20.4286C23.5045 30.0002 26 27.4806 26 24.3752V20.6252C26 19.5881 25.1701 18.7502 24.1429 18.7502C23.1156 18.7502 22.2857 19.5881 22.2857 20.6252V24.3752C22.2857 25.4123 21.4558 26.2502 20.4286 26.2502H5.57143C4.5442 26.2502 3.71429 25.4123 3.71429 24.3752V20.6252Z"
+                                            fill="white" />
+                                    </g>
+                                    <defs>
+                                        <clipPath id="clip0_228_103">
+                                            <rect width="26" height="30" fill="white" />
+                                        </clipPath>
+                                    </defs>
+                                </svg>
+
+                                Нажмите для загрузки
+
+                                <input type="file" id="json_drop">
+                            </label>
+
+                        </div>
+                        <div class="tab active_tab" data-tab="2">
+                            <h1 class="tab__title">
+                                Рекомендованные объекты
+                            </h1>
+
+                            <div class="tab__obj_list" id="tab__obj_list">
+                                
+                            </div>
+                        </div>
+                        <div class="tab" data-tab="3">
+                            <h1 class="tab__title">
+                                Сохраненные объекты
+                            </h1>
+                            <p class="tab__description">Вы планировали рассмотреть следующие объекты:</p>
+
+                            <div class="tab__obj_list" id="tab__saved_list">
+                                
+                            </div>
+                        </div>
+                        <div class="tab" data-tab="4">
+                            <h1 class="tab__title">
+                                Объекты на карте
+                            </h1>
+
+                            <div class="map" id="map">
+
+                            </div>
+                        </div>
+                        <div class="tab" data-tab="5">
+                            <h1 class="tab__title">
+                                Жалобы
+                            </h1>
+
+                            <div class="complaints_list">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://mapgl.2gis.com/api/js/v1"></script>
+
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>
