@@ -6,7 +6,7 @@ import numpy as np
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
-with open(os.path.join(base_dir, "dataset_train.json"), "r", encoding="utf-8") as file:
+with open(os.path.join(base_dir, "dataset_test.json"), "r", encoding="utf-8") as file:
     data = json.load(file)
 
 def add_noise(value, noise_scale=0.1):
@@ -44,7 +44,7 @@ synthetic_data = generate_synthetic_data(original_data, num_copies=1, noise_scal
 
 data = data + synthetic_data
 
-with open('dataset_train.json', "w", encoding="utf-8" ) as file:
+with open(os.path.join(base_dir, "dataset_test.json"), "w", encoding="utf-8" ) as file:
     json.dump(data,file, indent=4, ensure_ascii=False)
 
 # Вывод первого синтетического объекта

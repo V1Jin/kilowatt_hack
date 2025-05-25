@@ -64,20 +64,18 @@ def get_property_type(kad_number): #получение типа по кадас�
         return None
     
 def final_get(text):
-    if (get_has_business(API_2GIS, geocode_to_id(API_2GIS, text))):
-        return {
-            'name': text,
-            'type': get_property_type(get_cadastral_number(text)),
-            'kad': get_cadastral_number(text),
-            'cnt_biz': get_count_business(API_2GIS, geocode_to_id(API_2GIS, text))
-        }
-    else:
-        return "Ничего не найдено."
+    return {
+        'name': text,
+        'type': get_property_type(get_cadastral_number(text)),
+        'kad': get_cadastral_number(text),
+        'cnt_biz': get_count_business(API_2GIS, geocode_to_id(API_2GIS, text))
+    }
+
 
     
 
-# text = "Краснодар Северная 405"
-# print(final_get(text))
+text = "Краснодар ул 40 летия победы 33"
+print(final_get(text))
 
 
 

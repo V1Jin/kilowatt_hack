@@ -18,7 +18,8 @@
             "11": 2409,
             "12": 418
         },
-        "isCommercial": true
+        "isCommercial": true,
+        "prediction": "67.05"
     },
     {
         "accountId": 1082,
@@ -41,7 +42,8 @@
             "11": 7121,
             "12": 6075
         },
-        "isCommercial": false
+        "isCommercial": false,
+        "prediction": "36.75"
     },
     {
         "accountId": 1083,
@@ -63,7 +65,8 @@
             "11": 2926,
             "12": 3106
         },
-        "isCommercial": false
+        "isCommercial": false,
+        "prediction": "38.60"
     },
     {
         "accountId": 1084,
@@ -84,7 +87,8 @@
             "11": 3247,
             "12": 3857
         },
-        "isCommercial": false
+        "isCommercial": false,
+        "prediction": "35.14"
     },
     {
         "accountId": 1086,
@@ -107,7 +111,8 @@
             "11": 520,
             "12": 5260
         },
-        "isCommercial": true
+        "isCommercial": true,
+        "prediction": "54.39"
     },
     {
         "accountId": 1393,
@@ -127,7 +132,8 @@
             "11": 103,
             "12": 1400
         },
-        "isCommercial": false
+        "isCommercial": false,
+        "prediction": "47.14"
     },
     {
         "accountId": 1415,
@@ -150,6 +156,7 @@
             "11": 4671,
             "12": 5063
         },
-        "isCommercial": false
+        "isCommercial": false,
+        "prediction": "2.25"
     }
 ]

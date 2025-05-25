@@ -10,18 +10,39 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 
 print(tf.__version__)
 
-training_count = 28956 #4826
-epochs = [35]
-batchers = [64] 
-learning_rates = [0.0001]
-layers_list = [[128,0.2, 64,0.2,  32, 1]]
+training_count = 50000 #4826
+epochs = [50]
+batchers = [64, 32] 
+learning_rates = [0.001, 0.0001]
+layers_list = [[128, 64, 64, 32, 1], [64, 50, 40, 32, 1]]
 
 
-with open("dataset_train.json", encoding="utf-8") as file:
+with open(os.path.join(base_dir, "dataset_train.json"), encoding="utf-8") as file:
     train_data = json.load(file)
 
-with open("dataset_test.json", encoding="utf-8") as file:
+with open(os.path.join(base_dir, "dataset_test.json"), encoding="utf-8") as file:
     test_data = json.load(file)
+
+# train_data = test_data + train_data
+
+def test_model():
+    loaded_model = tf.keras.models.load_model(os.path.join(base_dir, "my_model_test.keras"))
+
+
+    result = {
+        "correct": 0,
+        "incorrect":0
+    }
+    for m in range(len(test_data[:1000])):
+        prediction = loaded_model.predict(normalize_data(test_data[m]))
+        print(f"PREDICTION = {prediction.tolist()}, REAL = {test_data[m]["isCommercial"]} ANSWER = {prediction.tolist()[0][0] >= 0.5}")
+        if (prediction.tolist()[0][0] >=0.5 and test_data[m]["isCommercial"] == True or prediction.tolist()[0][0] <0.5 and test_data[m]["isCommercial"] == False):
+            result["correct"]+= 1
+        else: result["incorrect"]+= 1
+
+    result["stat_correct"] = result["correct"]/(result["correct"] + result["incorrect"]) * 100
+    print(result)
+    return result
 
 def maxis():
     maximus = {
@@ -182,14 +203,15 @@ def get_stat():
                         epochs=epoch,
                         batch_size=batch_size,
                         verbose=1,
-                        validation_split = 0.2,
+                        validation_split = 0.35,
                         callbacks=[early_stopping]
                         )
 
 
-                    model.save("my_model.keras")
+                    model.save(os.path.join(base_dir, "my_model_test.keras"))
 
                     print(history.history)
+                    tester = test_model()
 
                     name = f'model {layers_count} layers {layers},  batch = {batch_size}, epochs = {epoch}, learningRate = {lr}, activation = {active_func}'
 
@@ -219,13 +241,14 @@ def get_stat():
                     comprasion[name] = history.history.copy()
                     comprasion[name]["avg"] = sum(history.history["accuracy"])/len(history.history["accuracy"])
                     comprasion[name]["max"] = max(history.history["accuracy"])
+                    comprasion[name]["stat"] = tester["stat_correct"]
                     if (comprasion[name]["max"] > maxi):
                         maxi =  comprasion[name]["max"]
                         maxi_name = name
                     if (comprasion[name]["avg"] > maxi_avg):
                         maxi_avg =  comprasion[name]["avg"]
                         maxi_avg_name = name
-                    plt.savefig(os.path.join(base_dir, "graphs", name) + ".png")
+                    plt.savefig(os.path.join(os.path.dirname(base_dir), "graphs", name) + ".png")
                     
                     query = {
                                 "accountId": 1497,
@@ -275,7 +298,7 @@ def get_stat():
 
                     iterator += 1
 
-    with open("comprasion.json","w+", encoding="utf-8") as file:
+    with open(os.path.join(base_dir, "comprasion.json"),"w+", encoding="utf-8") as file:
         json.dump(comprasion, file, indent=4, ensure_ascii=False)
 
 
@@ -283,31 +306,14 @@ def get_stat():
 
 # print(normalize_data(mock))
 # plt.show()
-# get_stat()
+get_stat()
 
 
-def test_model():
-    loaded_model = tf.keras.models.load_model("my_model.keras")
 
-
-    result = {
-        "correct": 0,
-        "incorrect":0
-    }
-    for m in range(len(test_data)):
-        prediction = loaded_model.predict(normalize_data(test_data[m]))
-        print(f"PREDICTION = {prediction.tolist()}, REAL = {test_data[m]["isCommercial"]}")
-        if (prediction.tolist()[0][0] >=0.5 and test_data[m]["isCommercial"] == True or prediction.tolist()[0][0] <0.5 and test_data[m]["isCommercial"] == False):
-            result["correct"]+= 1
-        else: result["incorrect"]+= 1
-
-    result["stat_correct"] = result["correct"]/(result["correct"] + result["incorrect"]) * 100
-    print(result)
-
-# test_model()
+test_model()
 
 def return_predictions(data):
-    loaded_model = tf.keras.models.load_model("my_model.keras")
+    loaded_model = tf.keras.models.load_model(os.path.join(base_dir, "my_model_test.keras"))
 
     result = []
 
@@ -319,15 +325,15 @@ def return_predictions(data):
             result[i]["isCommercial"] = True
         else:
             result[i]["isCommercial"] = False
-        result[i]["prediction"] = prediction.tolist()[0][0]
+        # result[i]["prediction"] = f"{prediction.tolist()[0][0] * 100:.2f}"
     
     return result
 
-with open("data_test_without_label.json", "r", encoding="utf-8") as file:
-    data = json.load(file)
+# with open(os.path.join(base_dir, "dataset_control.json"), "r", encoding="utf-8") as file:
+#     data = json.load(file)
 
-with open("data_test_without_label.json", "w", encoding="utf-8") as file:
-    json.dump(return_predictions(data),file, indent=4, ensure_ascii=False)
+# with open(os.path.join(base_dir, "dataset_control.json"), "w", encoding="utf-8") as file:
+#     json.dump(return_predictions(data),file, indent=4, ensure_ascii=False)
 
 # файл сравнения
 
